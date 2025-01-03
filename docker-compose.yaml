@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+
+  work-task-postgres:
+    image: postgres:14
+    ports:
+      - '127.0.0.1:5432:5432'
+    environment:
+      POSTGRES_USER: bot
+      POSTGRES_DB: task
+      POSTGRES_PASSWORD: bot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    external: true

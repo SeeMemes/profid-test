@@ -1,6 +1,5 @@
 package org.task.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -30,6 +29,15 @@ public class MarketService {
         gson = new Gson();
     }
 
+    /**
+     * Осуществляет покупку предмета на рынке, отправляя HTTP-запрос с необходимыми данными.
+     * Формирует запрос с методом POST для API, передавая авторизационный токен и данные о предмете для покупки.
+     * В случае успешного выполнения запроса возвращает {@code true}, в случае ошибки — {@code false}.
+     *
+     * @param lisTokenDto токен для авторизации, содержащий API ключ, steamPartner и steamToken
+     * @param itemId идентификатор предмета, который нужно купить
+     * @return {@code true}, если запрос на покупку выполнен успешно, {@code false} в случае ошибки
+     */
     public boolean buyItem(LisTokenDto lisTokenDto, Long itemId) {
         try {
             URI requestURI = new URI("https://api.lis-skins.com/v1/market/buy");
